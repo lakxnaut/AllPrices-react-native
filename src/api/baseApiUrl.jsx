@@ -1,0 +1,1 @@
+export const baseURL = "http://13.228.196.73:3000/api/auth/"

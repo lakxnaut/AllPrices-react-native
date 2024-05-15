@@ -12,7 +12,7 @@ import { authApi } from "../api/authApis";
 const CELL_COUNT = 4; // Number of cells (OTP digits)
 
 const VerifyOtpPage = ({route}) => {
-    const description = route.params
+  const description = route.params.description
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -26,18 +26,29 @@ const VerifyOtpPage = ({route}) => {
   
 
   const handleVerify = ()=>{
+    console.log(description)
     let json = {}
     if(description=='register'){
         json={
             description,
-            route.params.userData
+            userData:route.params.userData,
+            phone:route.params.userData.phoneNumber,
+            otp:value
         }
 
     }
     else if(description=='login'){
+
+      json={
+        description,
+        phone:route.params.userData.phoneNumber,
+        otp:value
+    }
         
     }
+    console.log(json)
     authApi.VerifyPhoneOtp(json).then(res=>{
+      console.log(res,'----><> oye res')
         if(res.status){
 
         }

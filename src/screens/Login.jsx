@@ -48,7 +48,11 @@ const LoginPage = ({ navigation }) => {
   };
 
   const handleLogin = () => {
+    if(!phoneNumber){
+      return
+    }
     authApi.Login(phoneNumber).then((res) => {
+      console.log(res,'login res---')
       if (!res.status) {
         setIsLogin(false);
       }
@@ -70,7 +74,7 @@ const LoginPage = ({ navigation }) => {
 
       }
       else if(res.status_code){
-        navigation.navigate('VerifyOtpPage',{description:"register",userData:{phoneNumber,referCode,userState}})
+        navigation.navigate('VerifyOtpPage',{description:"register",userData:{phone:phoneNumber,referCode,userState}})
       }
 
     })

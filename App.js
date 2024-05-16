@@ -32,8 +32,8 @@ export default function App() {
       // }}
       >
       <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown:false }}/>
+      <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown:false }} />
       <Stack.Screen name="VerifyOtpPage" component={VerifyOtpPage} options={{ headerShown:false }} />
-      <Stack.Screen name="HomePage" component={HomePage} />
       </Stack.Navigator>
       </NavigationContainer>
     // <View style={styles.container}>

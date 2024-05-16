@@ -8,10 +8,11 @@ import {
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
 import { authApi } from "../api/authApis";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CELL_COUNT = 4; // Number of cells (OTP digits)
 
-const VerifyOtpPage = ({route}) => {
+const VerifyOtpPage = ({route,navigation}) => {
   const description = route.params.description
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
@@ -25,14 +26,15 @@ const VerifyOtpPage = ({route}) => {
   }, [])
   
 
-  const handleVerify = ()=>{
-    console.log(description)
+  const handleVerify = async()=>{
+    console.log(description,'dessss')
+    console.log(route.params.phone,'verify phoneee')
     let json = {}
     if(description=='register'){
         json={
             description,
             userData:route.params.userData,
-            phone:route.params.userData.phoneNumber,
+            phone:route.params.phone,
             otp:value
         }
 
@@ -41,16 +43,17 @@ const VerifyOtpPage = ({route}) => {
 
       json={
         description,
-        phone:route.params.userData.phoneNumber,
+        phone:route.params.phone,
         otp:value
     }
         
     }
     console.log(json)
-    authApi.VerifyPhoneOtp(json).then(res=>{
+    authApi.VerifyPhoneOtp(json).then(async(res)=>{
       console.log(res,'----><> oye res')
         if(res.status){
-
+          await AsyncStorage.setItem('@phone', route.params.phone);
+          navigation.navigate('HomePage')
         }
         else{
 

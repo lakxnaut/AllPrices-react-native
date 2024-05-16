@@ -48,6 +48,8 @@ const LoginPage = ({ navigation }) => {
   };
 
   const handleLogin = () => {
+    console.log("hi login")
+    console.log(phoneNumber,"phon")
     if(!phoneNumber){
       return
     }
@@ -74,7 +76,7 @@ const LoginPage = ({ navigation }) => {
 
       }
       else if(res.status_code){
-        navigation.navigate('VerifyOtpPage',{description:"register",userData:{phone:phoneNumber,referCode,userState}})
+        navigation.navigate('VerifyOtpPage',{description:"register",phone:phoneNumber,userData:{phone:phoneNumber,usedRefer:referCode,state:userState}})
       }
 
     })

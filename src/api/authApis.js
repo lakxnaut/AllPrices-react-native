@@ -17,6 +17,7 @@ export const authApi = {
     },
 
     VerifyPhoneOtp : async (json) => {
+        console.log(json,'VerifyPhoneOtp-,,,,')
 
         return await BASEAPIS.POSTAPI(json, 'verifyPhoneOtp');
     },

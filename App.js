@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginPage from './src/screens/Login';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from './src/screens/HomePage';
 import VerifyOtpPage from './src/screens/VerifyOtpPage';
+import * as SplashScreen from 'expo-splash-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 const MyTheme = {
@@ -17,7 +19,24 @@ const MyTheme = {
 };
 
 
-export default function App() {
+export default function App({navigation}) {
+  useEffect(() => {
+    getUserFromLocal();
+    SplashScreen.preventAutoHideAsync();
+    setTimeout(SplashScreen.hideAsync, 5000);
+  }, )
+
+  const getUserFromLocal = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@phone');
+      if (value !== null) {
+        console.log(value)
+      }
+    } catch (e) {
+      console.error('Failed to fetch data', e);
+    }
+  };
+  
   return (
     <NavigationContainer>
       <Stack.Navigator

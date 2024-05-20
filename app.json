@@ -3,6 +3,11 @@
     "name": "AllPrices-react-native",
     "slug": "AllPrices-react-native",
     "version": "1.0.0",
+    "splash": {
+      "image": "./src/assets/images/logo.jpeg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffff"
+    },
     "assetBundlePatterns": [
       "**/*"
     ]

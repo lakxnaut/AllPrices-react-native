@@ -55,7 +55,7 @@ const LoginPage = ({ navigation }) => {
     }
     authApi.Login(phoneNumber).then((res) => {
       console.log(res,'login res---')
-      if (!res.status) {
+      if (res.status==false) {
         setIsLogin(false);
       }
       else if(res.status){

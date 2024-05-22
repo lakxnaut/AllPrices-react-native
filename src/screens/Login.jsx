@@ -59,7 +59,7 @@ const LoginPage = ({ navigation }) => {
         setIsLogin(false);
       }
       else if(res.status){
-        navigation.navigate('VerifyOtpPage',{description:"login"})
+        navigation.navigate('VerifyOtpPage',{description:"login",phone:phoneNumber})
       }
     });
   };

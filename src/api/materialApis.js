@@ -10,4 +10,8 @@ export const materialApi = {
     GetAllMaterialSubCategory : async (materialId) => {
         return await BASEAPIS.GETAPI('getAllMaterialSubCategory?materialId='+materialId);
     },
+
+    GetMaterialDataByMaterialId : async (json) => {
+        return await BASEAPIS.POSTAPI(json,'getMaterialDataByMaterialId');
+    },
 };

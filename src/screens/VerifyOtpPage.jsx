@@ -48,11 +48,11 @@ const VerifyOtpPage = ({route,navigation}) => {
     }
         
     }
-    console.log(json)
     authApi.VerifyPhoneOtp(json).then(async(res)=>{
       console.log(res,'----><> oye res')
         if(res.status){
-          await AsyncStorage.setItem('@phone', route.params.phone);
+          await AsyncStorage.setItem('@user_id', res.data._id);
+          await AsyncStorage.setItem('@referCode', res.data.referCode);
           navigation.navigate('HomePage')
         }
         else{
